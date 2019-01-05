@@ -1,0 +1,61 @@
+class Solution {
+public:
+    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& A) {
+        vector<vector<int>> B = A;
+        for(int i = 0; i<B.size();i++)
+        {
+            vector<int> oldV = B[i];
+            int size = oldV.size();
+            int myints[size];
+            for(int j = 0;j<oldV.size();j++)
+            {
+                if(oldV[j]==1)
+                {
+                    oldV[j] = 0;
+                }
+                else
+                {
+                    oldV[j] = 1;
+                }
+                myints[size-1-j]=oldV[j];
+            }
+            vector<int> newV;
+            newV.assign(myints,myints+size);
+            B[i] = newV;
+        }
+        return B;
+    }
+};
+
+
+//fast solution
+/*
+static int desyncio = []() {
+    std::ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    return 0;
+}();
+
+class Solution {
+public:
+    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& A) {
+        for(auto& row:A)
+        {
+            int front = 0;
+            int back = row.size() - 1;
+            while(front < back)
+            {
+                row[front] ^= 1;
+                row[back]  ^= 1;
+                std::swap(row[front], row[back]);
+                ++front;
+                --back;
+            }
+            if(front == back)
+                row[front] ^= 1;
+        }
+        return A;
+    }
+};
+*/
