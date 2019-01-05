@@ -1,0 +1,67 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isUnivalTree(TreeNode* root) {
+        int value = root->val;
+        return search(root,value);
+    }
+    
+    bool search(TreeNode* node, int value)
+    {
+        bool result = true;
+        bool lr = true;
+        bool rr = true;
+        if(node->val!=value)
+        {
+            result = false;
+        }
+        if(node->left!=NULL)
+        {
+            lr = search(node->left,value);
+        }
+        if(node->right!=NULL)
+        {
+            rr = search(node->right,value);
+        }
+        if(!(lr&&rr))
+        {
+            result = false;
+        }
+        return result;
+    }
+};
+
+//fast solution
+/*
+
+static int fast = [](){std::ios_base::sync_with_stdio(false); std::cin.tie(nullptr); return 0;}();
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isUnivalTree(TreeNode* root) {
+        if (root == nullptr) return true;
+        
+        return (!root->left  || root->left->val  == root->val)
+            && (!root->right || root->right->val == root->val)
+            && isUnivalTree(root->left)
+            && isUnivalTree(root->right);
+    }
+};
+*/
