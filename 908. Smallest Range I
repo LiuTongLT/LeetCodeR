@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int smallestRangeI(vector<int>& A, int K) {
+        int max = A[0];
+        int min = A[0];
+        for(int i = 1; i<A.size(); i++)
+        {
+            if(A[i]>max)
+            {
+                max = A[i];
+            }
+            if(A[i]<min)
+            {
+                min = A[i];
+            }
+        }
+        if(max-K >= min+K)
+        {
+            return (max-min-2*K);
+        }
+        else
+        {
+            return 0;
+        }
+        
+    }
+};
