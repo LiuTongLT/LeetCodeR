@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int projectionArea(vector<vector<int>>& grid) {
+        int top = 0, front = 0, side = 0;
+        for(int i = 0; i<grid.size(); i++)
+        {
+            int maxSide = 0;
+            int maxFront = 0;
+            for(int j = 0; j<grid[i].size(); j++)
+            {
+                if(grid[i][j]>maxSide)
+                {
+                    maxSide = grid[i][j];
+                }
+                if(grid[i][j]!=0)
+                {
+                    top++;
+                }
+                if(grid[j][i]>maxFront) 
+                {
+                    maxFront = grid[j][i];
+                }
+            }
+            side+=maxSide;
+            front+=maxFront;
+        }
+        return top+front+side;
+    }
+};
