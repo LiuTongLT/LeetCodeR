@@ -1,0 +1,28 @@
+// Very slow answer
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        string result("");
+        int length = s.length();
+        for(int i = length; i>0; i--){
+            string sub;
+            for(int j = 0;j<i ;j++){
+                sub = s.substr(j,i-j);
+                if(isPalindrome(sub) && sub.length()>result.length()){
+                    result = sub;
+                    break;
+                } 
+            }
+            if(result.length()==i){
+                break;
+            }
+        }
+        return result;
+    }
+private:
+    bool isPalindrome(string aSub){
+        string bSub(aSub);
+        std::reverse(bSub.begin(),bSub.end());
+        return bSub==aSub;
+    }
+};
