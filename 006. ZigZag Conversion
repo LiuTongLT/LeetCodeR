@@ -1,0 +1,31 @@
+//Limited memory exceeded
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        vector<vector<char>> result;
+        int carriage = 2*numRows - 2;
+        for(int i = 0; i<numRows; i++){
+            vector<char> row;
+            for(int j = i; j<s.length(); j+=carriage){
+                if(i==0 || i==numRows-1){
+                    row.push_back(s[j]);
+                }
+                else{
+                    row.push_back(s[j]);
+                    int num = 2*(numRows-i-1);
+                    if(j+num<s.length()){
+                        row.push_back(s[j+num]);
+                    }         
+                }
+            }
+            result.push_back(row);
+        }
+        string c="";
+        for(int a = 0; a<numRows; a++){
+            for(int b = 0; b<result[a].size(); b++){
+                c+=result[a][b];
+            }
+        }
+        return c;
+    }
+};
