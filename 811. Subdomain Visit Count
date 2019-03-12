@@ -1,0 +1,31 @@
+class Solution {
+    public List<String> subdomainVisits(String[] cpdomains) {
+        List<String> list = new ArrayList<>();
+        
+        if(cpdomains.length>0){
+            Map<String, Integer> map = new HashMap<String, Integer>();
+            for(String domain: cpdomains){
+                String[] domSplit = domain.split(" ");
+                int count = Integer.parseInt(domSplit[0]);
+                String curr = domSplit[1];
+                while(true){
+                    map.put(curr, map.getOrDefault(curr,0)+count);
+                    if(curr.indexOf(".")==-1){
+                        break;
+                    }
+                    curr = curr.substring(curr.indexOf(".")+1, curr.length());
+                }
+            }
+            Iterator it = map.entrySet().iterator();
+            while(it.hasNext()){
+                StringBuilder sb = new StringBuilder();
+                Map.Entry pair = (Map.Entry)it.next();
+                sb.append(pair.getValue());
+                sb.append(" ");
+                sb.append(pair.getKey());
+                list.add(sb.toString());
+            }
+        }
+        return list;        
+    }
+}
