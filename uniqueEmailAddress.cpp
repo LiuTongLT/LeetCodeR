@@ -1,10 +1,3 @@
-//
-//  main.cpp
-//  uniqueEmailAddress
-//
-//  Created by 刘桐 on 05/01/2019.
-//  Copyright © 2019 Liu Tong. All rights reserved.
-//
 
 #include <iostream>
 #include <vector>
